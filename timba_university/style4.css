@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* This helps with sizing calculations */
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 50px;
+  height: auto;
+  background-color: #a8df8e;
+}
+.logo{
+  height: 60px; /* Adjust size to fit your header */
+  width: auto;
+  margin-right: 15px;
+}
+.uni{
+  font-size: 50px;
+  margin: 0 auto;
+}
+/*all the css code for the second header*/
+.second_header{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 40px;
+  height: auto;
+  background-color: #ffd8df;
+}
+/*home button*/
+.home-icon {
+  height: 22px;
+  width: 30px;
+  margin-left: auto; /* This pushes the icon to the right side */
+  display: flex;     /* Helps with alignment */
+}
+/*the back and forward arrows*/
+.nav-arrow{
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 15px; /* This puts a nice small space between the < and > */
+  margin-right: auto;
+}
+.forward-icon, .back-icon {
+  text-decoration: none;
+  height: 30px;
+  width: 30px;
+}

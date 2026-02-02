@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* This helps with sizing calculations */
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 50px;
+  height: auto;
+  background-color: #a8df8e;
+}
+.logo{
+  height: 60px; /* Adjust size to fit your header */
+  width: auto;
+  margin-right: 15px;
+}
+.uni{
+  font-size: 50px;
+  margin: 0 auto;
+}
+/*all the css code for the second header*/
+.second_header{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 40px;
+  height: auto;
+  background-color: #ffd8df;
+}
+/*home button*/
+.home-icon {
+  height: 22px;
+  width: 30px;
+  margin-left: auto; /* This pushes the icon to the right side */
+  display: flex;     /* Helps with alignment */
+}
+/*the back and forward arrows*/
+.nav-arrow{
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 15px; /* This puts a nice small space between the < and > */
+  margin-right: auto;
+}
+.forward-icon, .back-icon {
+  text-decoration: none;
+  height: 30px;
+  width: 30px;
+}
+
+/* The big boss container that sits icons side-by-side */
+.container{
+    display: flex;
+    flex-direction: row;      /* Puts Student and Teacher in a line */
+    justify-content: center;  /* Centers both groups on the screen */
+    gap: 60px;                /* Creates that nice space between the two */
+    padding-top: 50px;
+}
+
+/* Keeps the box and its label stacked perfectly */
+.group {
+    display: flex;
+    flex-direction: column;   /* Puts the label UNDER the box */
+    align-items: center;      /* Keeps the label centered under the box */
+    gap: 15px;                /* Space between box and label */
+}
+
+/* Your existing box styles */
+.box {
+    width: 350px; 
+    height: 350px;
+    background-color: #93d574;
+    border: 10px solid #a8df8e;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styling the labels to match your screenshot */
+.rec {
+    width: 350px;
+    height: 60px;
+    background-color: #93d574;
+    border: 10px solid #a8df8e;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    
+    /* Font details */
+    color: black;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: 'Michroma', sans-serif; /* Using that Display font we talked about! */
+}
+
+.box img {
+    width: 70%; /* Adjust size of your SVG icons */
+    height: auto;
+}
+
+.box {
+    transition: all 0.3s ease; /* This makes the animation smooth, not jumpy */
+    cursor: pointer;
+}
+
+.clickable-box, .clickable-letter {
+  display: inline-block;   /* IMPORTANT: Keeps the clickable area only on the box */
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 20px;     /* Space between the big box and the rectangle */
+}
+/*hover design for my clickable student*/
+.clickable-box:hover .box img{
+  transform: scale(1.1);
+} 
+
+.stud, .teach {
+    text-decoration: none; /* Removes underline */
+}
+
+
+

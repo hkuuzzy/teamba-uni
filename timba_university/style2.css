@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* This helps with sizing calculations */
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 50px;
+  height: auto;
+  background-color: #a8df8e;
+}
+.logo{
+  height: 60px; /* Adjust size to fit your header */
+  width: auto;
+  margin-right: 15px;
+}
+.uni{
+  font-size: 50px;
+  margin: 0 auto;
+}
+/*all the css code for the second header*/
+.second_header{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 40px;
+  height: auto;
+  background-color: #ffd8df;
+}
+/*home button*/
+.home-icon {
+  height: 22px;
+  width: 30px;
+  margin-left: auto; /* This pushes the icon to the right side */
+  display: flex;     /* Helps with alignment */
+}
+/*the back and forward arrows*/
+.nav-arrow{
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 15px; /* This puts a nice small space between the < and > */
+  margin-right: auto;
+}
+.forward-icon, .back-icon {
+  text-decoration: none;
+  height: 30px;
+  width: 30px;
+}
+
+/*the css code of the big box and the rectangle shape at the center nigga*/
+.main-content {
+  display: flex;
+  flex-direction: column; /* Stacks items vertically */
+  align-items: center;    /* Centers items horizontally */
+  gap: 20px;              /* Space between the box and the rectangle */
+  width: 100%;
+}
+
+.rec {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  height: 100px;
+  width: 990px;            
+  border: 13px solid #a8df8e;
+  background-color: #93d574;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 50px;
+  
+  /* Styling to make it look like a label */
+  color: #000;             
+  user-select: none;       /* Prevents text highlighting */
+  cursor: default;         /* Keeps the mouse as an arrow instead of a pointer */
+}
+.box{
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  height: 450px;
+  width: 990px;
+  margin: auto;
+  border: 13px solid;
+  border-color: #a8df8e;
+  background-color: #93d574;
+}
+#box1{
+  margin-top: 20px;
+}
+
