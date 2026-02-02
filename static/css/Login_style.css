@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* This helps with sizing calculations */
+  font-family: 'jost', sans-serif;
+}
+body {
+  background-color: #efffdb;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 50px;
+  height: auto;
+  background-color: #a8df8e;
+}
+.logo{
+  height: 60px; /* Adjust size to fit your header */
+  width: auto;
+  margin-right: 15px;
+}
+.uni{
+  font-size: 50px;
+  margin: 0 auto;
+}
+/*all the css code for the second header*/
+.second_header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  height: 30px;
+  background-color: #ffd8df;
+}
+.trigger {
+  margin: 0;
+  line-height: 30px;
+  font-weight: 700;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  text-align: right; 
+}
+/* Remove default bullet points and padding from the lists */
+.nav-menu, .dropdown-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nav-menu{
+  display: flex;
+  margin-left: auto; /* This pushes the whole menu to the right side */
+  list-style: none;  /* Removes the bullet point dots */
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* Make the parent relative so the dropdown knows where to align */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* 1. Hide the menu by default */
+.dropdown-menu {
+  display: none; 
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.1); /* Adds a nice depth */
+  z-index: 1;
+  border-radius: 4px;
+  top: 100%; /* Positions it directly below the "..." */
+  right: 0;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-menu li a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* 2. Show the menu on hover */
+.dropdown-container:hover .dropdown-menu {
+  display: block;
+}
+
+/* Optional: Change background color on hover */
+.dropdown-menu li a:hover {
+  background-color: #ffd8df;
+}
+
+/* Underline the logout/login link */
+.dropdown-menu li a.logout-link {
+  text-decoration: underline;
+  font-weight: 700;
+}
+/*the back and forward arrows*/
+.nav-arrows{
+  margin-top: 10px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 15px; /* This puts a nice small space between the < and > */
+  margin-right: auto;
+}
+.back-icon {
+  text-decoration: none;
+  height: 30px;
+  width: 30px;
+}
+
+/*main content  */
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 0px;
+  padding: 20px 20px 20px 20px; /* Reduced left padding to move box further left */
+}
+.group {
+  display: flex;
+  flex-direction: row; /* Aligns items side-by-side */
+  align-items: center;
+  gap: 40px; 
+}
+
+.word_box, .box {
+  background-color: #93d574; /* Darker green fill */
+  border: 15px solid #a8df8e; /* Lighter green thick border */
+}
+
+/* Text Box Styling */
+.word_box {
+  width: 600%;
+  max-width: fit-content;
+  height: auto;
+  box-sizing: border-box;
+  flex: 1;
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding: 40px;
+  color: #23962f;
+  text-align: center;
+  line-height: 1.6;
+  display: flex;
+  align-items: center;
+}
+.box {
+  width: 900px;
+  height:550px;
+  flex: 1;
+  display: flex; /* Removes extra space under image */
+  align-items: flex-start;
+}
+.box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
