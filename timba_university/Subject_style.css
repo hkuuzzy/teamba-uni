@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box; /* This helps with sizing calculations */
+  font-family: 'jost', sans-serif;
 }
 header {
   display: flex;
@@ -20,6 +21,8 @@ header {
   font-size: 50px;
   margin: 0 auto;
 }
+
+
 /*all the css code for the second header*/
 .second_header{
   display: flex;
@@ -28,22 +31,77 @@ header {
   height: auto;
   background-color: #ffd8df;
 }
-/*home button*/
-.home-icon {
-  height: 22px;
-  width: 30px;
-  margin-left: auto; /* This pushes the icon to the right side */
-  display: flex;     /* Helps with alignment */
+.trigger {
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  display: block;
+  padding: 5px 10px;
+  text-align: right; 
+}
+/* Remove default bullet points and padding from the lists */
+.nav-menu, .dropdown-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nav-menu{
+  display: flex;
+  margin-left: auto; /* This pushes the whole menu to the right side */
+  list-style: none;  /* Removes the bullet point dots */
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* Make the parent relative so the dropdown knows where to align */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* 1. Hide the menu by default */
+.dropdown-menu {
+  display: none; 
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.1); /* Adds a nice depth */
+  z-index: 1;
+  border-radius: 4px;
+  top: 100%; /* Positions it directly below the "..." */
+  right: 0;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-menu li a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* 2. Show the menu on hover */
+.dropdown-container:hover .dropdown-menu {
+  display: block;
+}
+
+/* Optional: Change background color on hover */
+.dropdown-menu li a:hover {
+  background-color: #ffd8df;
 }
 /*the back and forward arrows*/
-.nav-arrow{
+.nav-arrows{
+  margin-top: 10px;
   text-decoration: none;
   display: flex;
   align-items: center;
   gap: 15px; /* This puts a nice small space between the < and > */
   margin-right: auto;
 }
-.forward-icon, .back-icon {
+.back-icon {
   text-decoration: none;
   height: 30px;
   width: 30px;
