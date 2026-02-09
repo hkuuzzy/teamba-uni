@@ -4,6 +4,9 @@
   box-sizing: border-box; /* This helps with sizing calculations */
   font-family: 'jost', sans-serif;
 }
+body {
+  background-color: #efffdb;
+}
 header {
   display: flex;
   justify-content: space-between;
@@ -25,19 +28,21 @@ header {
 .second_header{
   display: flex;
   justify-content: space-between;
-  padding: 10px 40px;
-  height: auto;
+  align-items: center;
+  padding: 0px 40px;
+  height: 30px; /* Reduced height for a slimmer second header */
   background-color: #ffd8df;
 }
 .trigger {
-  margin-bottom: 10px;
-  font-weight: bold;
+  margin: 0;
+  line-height: 30px;
+  font-weight: 700;
   text-decoration: none;
   color: black;
-  font-weight: bold;
   font-size: 20px;
-  display: block;
-  padding: 5px 10px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
   text-align: right; 
 }
 /* Remove default bullet points and padding from the lists */

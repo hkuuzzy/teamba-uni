@@ -95,12 +95,6 @@ header {
 .dropdown-menu li a:hover {
   background-color: #ffd8df;
 }
-
-/* Underline the logout/login link */
-.dropdown-menu li a.logout-link {
-  text-decoration: underline;
-  font-weight: 700;
-}
 /*the back and forward arrows*/
 .nav-arrows{
   margin-top: 10px;
@@ -162,10 +156,4 @@ header {
   width: 100%;
   height: auto;
   display: block;
-}
-
-/* Highlight current dropdown link (underline) */
-.dropdown-menu li a.active {
-  text-decoration: underline;
-  font-weight: 700;
 }

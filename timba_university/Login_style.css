@@ -119,10 +119,10 @@ header {
 /*main content  */
 .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-  padding: 20px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 0px;
+  padding: 20px 20px 20px 20px; /* Reduced left padding to move box further left */
 }
 .group {
   display: flex;
@@ -153,19 +153,15 @@ header {
   align-items: center;
 }
 .box {
-  width: 600px;
-  height:500px;
+  width: 900px;
+  height:550px;
   flex: 1;
   display: flex; /* Removes extra space under image */
+  align-items: flex-start;
 }
 .box img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
-}
-
-/* Highlight current dropdown link (underline) */
-.dropdown-menu li a.active {
-  text-decoration: underline;
-  font-weight: 700;
 }
