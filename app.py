@@ -1,34 +1,41 @@
-from flask import Flask, render_template, request, redirect
-from db import get_connection
+from flask import Flask, render_template, request, redirect, url_for
+from db import get_db_connection
 
 app = Flask(__name__)
 
-@app.route("/")
-def home():
-    return render_template("About_page.html")
-
-@app.route("/login")
+@app.route("/", methods=["GET", "POST"])
 def login():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        # TEMPORARY LOGIN CHECK (for demo)
+        if username == "CedsParty67" and password == "Welcome2CiddysParty":
+            return redirect(url_for("button"))
+        else:
+            return render_template("Login_page.html", error=True)
+
     return render_template("Login_page.html")
+@app.route("/button")
+def button():
+    return render_template("button.html")
 
 @app.route("/subjects")
 def subjects():
-    conn = get_connection()
+    conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
 
     cursor.execute("""
-        SELECT subjects.subject_id, subjects.subject_name, units,
-               teachers.first_name, teachers.last_name
-        FROM subjects
-        LEFT JOIN teachers ON subjects.teacher_id = teachers.teacher_id
+        SELECT Subjects.SubjectID, SubjectName, Units,
+               CONCAT(TeacherFN, ' ', TeacherLN) AS Teacher
+        FROM Subjects
+        LEFT JOIN Teachers ON Subjects.TeacherID = Teachers.TeacherID
     """)
 
-    data = cursor.fetchall()
+    subjects = cursor.fetchall()
     conn.close()
 
-    return render_template("Subject_Table.html", subjects=data)
-
+    return render_template("Subject_Table.html", subjects=subjects)
 
 if __name__ == "__main__":
     app.run(debug=True)
-
