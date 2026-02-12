@@ -1,9 +1,10 @@
 import mysql.connector
 
-def get_connection():
+def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
         user="root",
-        password="password",
-        database="Info_Man_Proj"
+        password="password",   # XAMPP default
+        database="teambadb"
     )
+
