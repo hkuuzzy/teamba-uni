@@ -20,6 +20,11 @@ def login():
 def button():
     return render_template("button.html")
 
+@app.route("/about")
+def about():
+    return render_template("About_page.html")
+
+
 @app.route("/subjects")
 def subjects():
     conn = get_db_connection()

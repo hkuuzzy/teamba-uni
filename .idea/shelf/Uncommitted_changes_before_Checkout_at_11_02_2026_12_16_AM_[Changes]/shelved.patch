@@ -1,0 +1,50 @@
+Index: app.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from flask import Flask, render_template, request, redirect\r\nfrom db import get_connection\r\n\r\napp = Flask(__name__)\r\n\r\n@app.route(\"/\")\r\ndef home():\r\n    return render_template(\"About_page.html\")\r\n\r\n@app.route(\"/login\")\r\ndef login():\r\n    return render_template(\"Login_page.html\")\r\n\r\n@app.route(\"/subjects\")\r\ndef subjects():\r\n    conn = get_connection()\r\n    cursor = conn.cursor(dictionary=True)\r\n\r\n    cursor.execute(\"\"\"\r\n        SELECT subjects.subject_id, subjects.subject_name, units,\r\n               teachers.first_name, teachers.last_name\r\n        FROM subjects\r\n        LEFT JOIN teachers ON subjects.teacher_id = teachers.teacher_id\r\n    \"\"\")\r\n\r\n    data = cursor.fetchall()\r\n    conn.close()\r\n\r\n    return render_template(\"Subject_Table.html\", subjects=data)\r\n\r\n\r\nif __name__ == \"__main__\":\r\n    app.run(debug=True)\r\n\r\n
+===================================================================
+diff --git a/app.py b/app.py
+--- a/app.py	(revision 2e39fcef578459c3ade3cebecaf58fc29a86c7f2)
++++ b/app.py	(date 1770740045535)
+@@ -5,12 +5,12 @@
+ 
+ @app.route("/")
+ def home():
+-    return render_template("About_page.html")
+-
+-@app.route("/login")
+-def login():
+     return render_template("Login_page.html")
+ 
++@app.route("/about")
++def login():
++    return render_template("About_page.html")
++
+ @app.route("/subjects")
+ def subjects():
+     conn = get_connection()
+Index: templates/Login_page.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <link rel=\"stylesheet\" href=\"../static/css/Login_style.css\">\r\n    <title>Document</title>\r\n</head>\r\n<body>\r\n    <header>\r\n\r\n        <img src=\"../static/pics/logo.png\" class=\"logo\" alt=\"TU Logo\">\r\n        <h4 div class = \"uni\">TEAMBA UNIVERSITY</h4>  \r\n\r\n    </header>\r\n      <!--this is the second header we're y'all see the bottons of home andd arrows-->\r\n    <div class = \"second_header\">\r\n        <div class=\"nav-arrows\">\r\n            <a href=\"button.html\" class=\"back-icon\">\r\n                <img src=\"../static/pics/keyboard_arrow_left_24dp_1F1F1F.svg\">\r\n            </a>\r\n        </div>\r\n        <ul class=\"nav-menu\">\r\n            <li class=\"dropdown-container\">\r\n                <a href=\"#\" class=\"trigger\">...</a>\r\n                <ul class=\"dropdown-menu\">\r\n                    <li><a href=\"Login_page.html\" class=\"logout-link\">Log in</a></li>\r\n                    <li><a href=\"About_page.html\">About</a></li>\r\n                </ul>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n    <div class=\"container\">\r\n        <div class=\"group\">\r\n            <div class=\"box\">\r\n                <img src=\"../static/pics/Login_pic.jpg\" alt=\"pic\">\r\n            </div>\r\n        </div>\r\n    </div>\r\n</body> \r\n</html>
+===================================================================
+diff --git a/templates/Login_page.html b/templates/Login_page.html
+--- a/templates/Login_page.html	(revision 2e39fcef578459c3ade3cebecaf58fc29a86c7f2)
++++ b/templates/Login_page.html	(date 1770740114328)
+@@ -10,7 +10,7 @@
+     <header>
+ 
+         <img src="../static/pics/logo.png" class="logo" alt="TU Logo">
+-        <h4 div class = "uni">TEAMBA UNIVERSITY</h4>  
++        <h4 div class = "uni">TEAMBA UNIVERSITY</h4>
+ 
+     </header>
+       <!--this is the second header we're y'all see the bottons of home andd arrows-->
+@@ -37,5 +37,5 @@
+             </div>
+         </div>
+     </div>
+-</body> 
++</body>
+ </html>
+\ No newline at end of file

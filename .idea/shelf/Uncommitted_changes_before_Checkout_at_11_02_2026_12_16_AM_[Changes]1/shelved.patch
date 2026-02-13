@@ -1,0 +1,1427 @@
+Index: timba_university/static/Subject_style.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/timba_university/static/Subject_style.css b/timba_university/static/Subject_style.css
+new file mode 100644
+--- /dev/null	(date 1770739189745)
++++ b/timba_university/static/Subject_style.css	(date 1770739189745)
+@@ -0,0 +1,155 @@
++* {
++  margin: 0;
++  padding: 0;
++  box-sizing: border-box; /* This helps with sizing calculations */
++  font-family: 'jost', sans-serif;
++}
++body {
++  background-color: #efffdb;
++}
++header {
++  display: flex;
++  justify-content: space-between;
++  align-items: center;
++  padding: 10px 50px;
++  height: auto;
++  background-color: #a8df8e;
++}
++.logo{
++  height: 60px; /* Adjust size to fit your header */
++  width: auto;
++  margin-right: 15px;
++}
++.uni{
++  font-size: 50px;
++  margin: 0 auto;
++}
++
++
++/*all the css code for the second header*/
++.second_header{
++  display: flex;
++  justify-content: space-between;
++  align-items: center;
++  padding: 10px 40px;
++  height: 30px;
++  background-color: #ffd8df;
++}
++.trigger {
++  margin: 0;
++  line-height: 30px;
++  font-weight: 700;
++  text-decoration: none;
++  color: black;
++  font-size: 20px;
++  display: inline-flex;
++  align-items: center;
++  padding: 0 10px;
++  text-align: right; 
++}
++/* Remove default bullet points and padding from the lists */
++.nav-menu, .dropdown-menu {
++  list-style: none;
++  padding: 0;
++  margin: 0;
++}
++.nav-menu{
++  display: flex;
++  margin-left: auto; /* This pushes the whole menu to the right side */
++  list-style: none;  /* Removes the bullet point dots */
++  padding: 0;
++  margin-top: 0;
++  margin-bottom: 0;
++}
++/* Make the parent relative so the dropdown knows where to align */
++.dropdown-container {
++  position: relative;
++  display: inline-block;
++}
++
++/* 1. Hide the menu by default */
++.dropdown-menu {
++  display: none; 
++  position: absolute;
++  background-color: #ffffff;
++  min-width: 120px;
++  box-shadow: 0px 8px 16px rgba(0,0,0,0.1); /* Adds a nice depth */
++  z-index: 1;
++  border-radius: 4px;
++  top: 100%; /* Positions it directly below the "..." */
++  right: 0;
++}
++
++/* Style the links inside the dropdown */
++.dropdown-menu li a {
++  color: black;
++  padding: 12px 16px;
++  text-decoration: none;
++  display: block;
++}
++
++/* 2. Show the menu on hover */
++.dropdown-container:hover .dropdown-menu {
++  display: block;
++}
++
++/* Optional: Change background color on hover */
++.dropdown-menu li a:hover {
++  background-color: #ffd8df;
++}
++/*the back and forward arrows*/
++.nav-arrows{
++  margin-top: 10px;
++  text-decoration: none;
++  display: flex;
++  align-items: center;
++  gap: 15px; /* This puts a nice small space between the < and > */
++  margin-right: auto;
++}
++.back-icon {
++  text-decoration: none;
++  height: 30px;
++  width: 30px;
++}
++
++/*the css code of the big box and the rectangle shape at the center nigga*/
++.main-content {
++  display: flex;
++  flex-direction: column; /* Stacks items vertically */
++  align-items: center;    /* Centers items horizontally */
++  gap: 20px;              /* Space between the box and the rectangle */
++  width: 100%;
++}
++
++.rec {
++  display: flex;
++  justify-content: center; 
++  align-items: center;     
++  height: 100px;
++  width: 990px;            
++  border: 13px solid #a8df8e;
++  background-color: #93d574;
++  border-radius: 10px;
++  font-weight: bold;
++  font-size: 50px;
++  
++  /* Styling to make it look like a label */
++  color: #000;             
++  user-select: none;       /* Prevents text highlighting */
++  cursor: default;         /* Keeps the mouse as an arrow instead of a pointer */
++}
++.box{
++  display: flex;
++  justify-content: center;
++  border-radius: 10px;
++  height: 450px;
++  width: 990px;
++  margin: auto;
++  border: 13px solid;
++  border-color: #a8df8e;
++  background-color: #93d574;
++}
++#box1{
++  margin-top: 20px;
++}
++
+Index: timba_university/templates/About_page.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/timba_university/templates/About_page.html b/timba_university/templates/About_page.html
+new file mode 100644
+--- /dev/null	(date 1770739189746)
++++ b/timba_university/templates/About_page.html	(date 1770739189746)
+@@ -0,0 +1,45 @@
++<!DOCTYPE html>
++<html lang="en">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <link rel="stylesheet" href="../static/About_style.css">
++    <title>Document</title>
++</head>
++<body>
++    <header>
++
++        <img src="../pics/logo.png" class="logo" alt="TU Logo">
++        <h4 div class = "uni">TEAMBA UNIVERSITY</h4>  
++
++    </header>
++      <!--this is the second header we're y'all see the bottons of home andd arrows-->
++    <div class = "second_header">
++        <div class="nav-arrows">
++            <a href="button.html" class="back-icon">
++                <img src="../pics/keyboard_arrow_left_24dp_1F1F1F.svg">
++            </a>
++        </div>
++        <ul class="nav-menu">
++            <li class="dropdown-container">
++                <a href="#" class="trigger">...</a>
++                <ul class="dropdown-menu">
++                    <li><a href="Login_page.html">Log out</a></li>
++                    <li><a href="About_page.html" class="active">About</a></li>
++                </ul>
++            </li>
++        </ul>
++    </div>
++    <div class="container">
++        <div class="group">
++            <div class="word_box">Teamba Academy
++is a specialized web platform built to bridge the gap between students and teachers in a high school setting. It serves as a digital campus where administrative tasks like choosing classes and managing rosters are handled through a clean, intuitive interface.
++            </div>
++
++            <div class="box">
++                <img src="../pics/about_pic.jpg" alt="pic">
++            </div>
++        </div>
++    </div>
++</body> 
++</html>
+\ No newline at end of file
+Index: timba_university/templates/button.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/timba_university/templates/button.html b/timba_university/templates/button.html
+new file mode 100644
+--- /dev/null	(date 1770739189747)
++++ b/timba_university/templates/button.html	(date 1770739189747)
+@@ -0,0 +1,62 @@
++<!DOCTYPE html>
++<html lang="en">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <link rel="stylesheet" href="../static/buttons_style.css">
++    <title>Teamba University</title>
++</head>
++<body>
++    <header>
++        <img src="../pics/logo.png" class="logo" alt="TU Logo">
++        <h4 div class = "uni">TEAMBA UNIVERSITY</h4>
++    </header>
++
++    <!--this is the second header we're y'all see the bottons of home andd arrows-->
++   <div class="second_header">
++        <ul class="nav-menu">
++            <li class="dropdown-container">
++                <a href="#" class="trigger">...</a>
++                <ul class="dropdown-menu">
++                    <li><a href="Login_page.html">Log out</a></li>
++                    <li><a href="About_page.html">About</a></li>
++                </ul>
++            </li>
++        </ul>
++    </div>
++
++    <!--main content-->
++<div class="container">
++    <div class="group">
++        <a href="#" class="clickable-box">
++            <div class="box">
++                <img src="../pics/user-graduate-solid.svg" alt="student">
++            </div>
++        </a>  
++        <a href="" class="stud">
++            <div class="rec">Student</div> 
++        </a> 
++    </div>
++    <div class="group">
++        <a href="Subject_Table.html" class="clickable-box">
++            <div class="box">
++                <img src="../pics/books.svg" alt="books">
++            </div>
++        </a>
++        <a href="page4.html" class="clickable-letter">
++            <div class="rec" >Subjects</div>
++        </a>
++    </div>
++    <div class="group">
++        <a href="#" class="clickable-box">
++            <div class="box">
++                <img src="../pics/teacher-logo.svg" alt="teacher">
++            </div>
++        </a>
++        <a href="" class="teach">
++            <div class="rec">Teacher</div>
++        </a>
++    </div>
++</div>
++</body>
++</html>
+\ No newline at end of file
+Index: timba_university/templates/Login_page.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/timba_university/templates/Login_page.html b/timba_university/templates/Login_page.html
+new file mode 100644
+--- /dev/null	(date 1770739189746)
++++ b/timba_university/templates/Login_page.html	(date 1770739189746)
+@@ -0,0 +1,144 @@
++<!DOCTYPE html>
++<html lang="en">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <link rel="stylesheet" href="../static/Login_style.css">
++    <title>Document</title>
++</head>
++<body>
++    <header>
++
++        <img src="../pics/logo.png" class="logo" alt="TU Logo">
++        <h4 div class = "uni">TEAMBA UNIVERSITY</h4>  
++
++    </header>
++      <!--this is the second header we're y'all see the bottons of home andd arrows-->
++    <div class = "second_header">
++        <div class="nav-arrows">
++            <a href="button.html" class="back-icon">
++                <img src="../pics/keyboard_arrow_left_24dp_1F1F1F.svg">
++            </a>
++        </div>
++        <ul class="nav-menu">
++            <li class="dropdown-container">
++                <a href="#" class="trigger">...</a>
++                <ul class="dropdown-menu">
++                    <li><a href="Login_page.html" class="logout-link">Log in</a></li>
++                    <li><a href="About_page.html">About</a></li>
++                </ul>
++            </li>
++        </ul>
++    </div>
++    <!-- MAIN LOGIN FORM SECTION ↓↓↓ THIS IS THE LOGIN FEATURE ↓↓↓ -->
++    <div class="login-container">
++        <div class="login-box">
++            <h2>Login</h2>
++            
++            <!-- ERROR MESSAGE -->
++            <div id="errorMessage" class="error-message" style="display:none;">
++                <p>Invalid username. Please try again.</p>
++            </div>
++            
++            <!-- THIS IS THE LOGIN FORM - Send POST request to your backend -->
++            <form id="loginForm" method="POST" action="/login/">
++                
++                <!-- USERNAME/EMAIL INPUT -->
++                <div class="form-group">
++                    <label for="username">Username or Email:</label>
++                    <input 
++                        type="text" 
++                        id="username" 
++                        name="username" 
++                        placeholder="Enter your username or email"
++                        value="CedsParty67"
++                        required
++                    >
++                </div>
++                
++                <!-- PASSWORD INPUT -->
++                <div class="form-group">
++                    <label for="password">Password:</label>
++                    <input 
++                        type="password" 
++                        id="password" 
++                        name="password" 
++                        placeholder="Enter your password"
++                        value="Welcome2CiddysParty"
++                        required
++                    >
++                </div>
++                
++                <!-- REMEMBER ME CHECKBOX (OPTIONAL) -->
++                <div class="form-group checkbox">
++                    <input type="checkbox" id="remember" name="remember">
++                    <label for="remember">Remember me</label>
++                </div>
++                
++                <!-- LOGIN BUTTON -->
++                <button type="submit" class="login-btn">Login</button>
++            </form>
++            <!-- END OF LOGIN FORM ↑↑↑ -->
++            
++            <!-- ADDITIONAL LINKS -->
++            <div class="login-footer">
++                <a href="#forgot-password">Forgot Password?</a>
++                <span>|</span>
++                <a href="#signup">Sign Up</a>
++            </div>
++        </div>
++        
++        <!-- OPTIONAL: LOGIN IMAGE SIDE -->
++        <div class="login-image">
++            <img src="../pics/Login_pic.jpg" alt="University Campus">
++        </div>
++    </div>
++    <!-- END OF LOGIN FORM SECTION ↑↑↑ -->
++
++    <script>
++        // Credentials validation
++        const correctUsername = "CedsParty67";
++        const correctPassword = "Welcome2CiddysParty";
++        
++        const usernameInput = document.getElementById('username');
++        const passwordInput = document.getElementById('password');
++        const loginForm = document.getElementById('loginForm');
++        const errorMessage = document.getElementById('errorMessage');
++        
++        // Real-time username validation
++        usernameInput.addEventListener('input', function() {
++            if (this.value !== correctUsername && this.value.length > 0) {
++                errorMessage.textContent = 'Invalid username. Please try again.';
++                errorMessage.style.display = 'block';
++            } else {
++                errorMessage.style.display = 'none';
++            }
++        });
++        
++        // Form submission validation
++        loginForm.addEventListener('submit', function(event) {
++            event.preventDefault(); // Prevent default form submission
++            
++            const username = usernameInput.value;
++            const password = passwordInput.value;
++            
++            // Check if credentials are correct
++            if (username === correctUsername && password === correctPassword) {
++                // Credentials are correct - you can proceed with login
++                alert('Login successful!');
++                // You can redirect or submit the form here
++                window.location.href = 'button.html';
++            } else if (username !== correctUsername) {
++                errorMessage.textContent = 'Invalid username. Please try again.';
++                errorMessage.style.display = 'block';
++            } else if (password !== correctPassword) {
++                errorMessage.textContent = 'Invalid password. Please try again.';
++                errorMessage.style.display = 'block';
++            } else {
++                errorMessage.textContent = 'Invalid username or password.';
++                errorMessage.style.display = 'block';
++            }
++        });
++    </script>
++</body> 
++</html>
+\ No newline at end of file
+Index: timba_university/templates/Subject_Table.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/timba_university/templates/Subject_Table.html b/timba_university/templates/Subject_Table.html
+new file mode 100644
+--- /dev/null	(date 1770739189747)
++++ b/timba_university/templates/Subject_Table.html	(date 1770739189747)
+@@ -0,0 +1,41 @@
++<!DOCTYPE html>
++<html lang="en">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <link rel="stylesheet" href="../static/Subject_style.css">
++    <title>Teamba University</title>
++</head>
++<body>
++    <header>
++
++        <img src="../pics/logo.png" class="logo" alt="TU Logo">
++        <h4 div class = "uni">TEAMBA UNIVERSITY</h4>  
++
++    </header>
++
++    <!--this is the second header we're y'all see the bottons of home andd arrows-->
++    <div class = "second_header">
++        <div class="nav-arrows">
++            <a href="button.html" class="back-icon">
++                <img src="../pics/keyboard_arrow_left_24dp_1F1F1F.svg">
++            </a>
++        </div>
++        <ul class="nav-menu">
++            <li class="dropdown-container">
++                <a href="#" class="trigger">...</a>
++                <ul class="dropdown-menu">
++                    <li><a href="#">Log out</a></li>
++                    <li><a href="About_page.html">About</a></li>
++                </ul>
++            </li>
++        </ul>
++    </div>
++
++    <!--all in this class: main-content is the box at the center-->
++<div class="main-content">
++    <div class="box" id="box1"></div>
++    <div class="rec" id="rec2">Subject Table</div>
++</div>
++</body>
++</html>
+\ No newline at end of file
+Index: timba_university/static/About_style.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/timba_university/static/About_style.css b/timba_university/static/About_style.css
+new file mode 100644
+--- /dev/null	(date 1770739189743)
++++ b/timba_university/static/About_style.css	(date 1770739189743)
+@@ -0,0 +1,176 @@
++* {
++  margin: 0;
++  padding: 0;
++  box-sizing: border-box; /* This helps with sizing calculations */
++  font-family: 'jost', sans-serif;
++}
++body {
++  background-color: #efffdb;
++}
++header {
++  display: flex;
++  justify-content: space-between;
++  align-items: center;
++  padding: 10px 50px;
++  height: auto;
++  background-color: #a8df8e;
++}
++.logo{
++  height: 60px; /* Adjust size to fit your header */
++  width: auto;
++  margin-right: 15px;
++}
++.uni{
++  font-size: 50px;
++  margin: 0 auto;
++}
++/*all the css code for the second header*/
++.second_header{
++  display: flex;
++  justify-content: space-between;
++  align-items: center;
++  padding: 10px 40px;
++  height: 30px;
++  background-color: #ffd8df;
++}
++.trigger {
++  margin: 0;
++  line-height: 30px;
++  font-weight: 700;
++  text-decoration: none;
++  color: black;
++  font-size: 20px;
++  display: inline-flex;
++  align-items: center;
++  padding: 0 10px;
++  text-align: right; 
++}
++/* Remove default bullet points and padding from the lists */
++.nav-menu, .dropdown-menu {
++  list-style: none;
++  padding: 0;
++  margin: 0;
++}
++.nav-menu{
++  display: flex;
++  margin-left: auto; /* This pushes the whole menu to the right side */
++  list-style: none;  /* Removes the bullet point dots */
++  padding: 0;
++  margin-top: 0;
++  margin-bottom: 0;
++}
++/* Make the parent relative so the dropdown knows where to align */
++.dropdown-container {
++  position: relative;
++  display: inline-block;
++}
++
++/* 1. Hide the menu by default */
++.dropdown-menu {
++  display: none; 
++  position: absolute;
++  background-color: #ffffff;
++  min-width: 120px;
++  box-shadow: 0px 8px 16px rgba(0,0,0,0.1); /* Adds a nice depth */
++  z-index: 1;
++  border-radius: 4px;
++  top: 100%; /* Positions it directly below the "..." */
++  right: 0;
++}
++
++/* Style the links inside the dropdown */
++.dropdown-menu li a {
++  color: black;
++  padding: 12px 16px;
++  text-decoration: none;
++  display: block;
++}
++
++/* 2. Show the menu on hover */
++.dropdown-container:hover .dropdown-menu {
++  display: block;
++}
++
++/* Optional: Change background color on hover */
++.dropdown-menu li a:hover {
++  background-color: #ffd8df;
++}
++
++/* Underline the logout/login link */
++.dropdown-menu li a.logout-link {
++  text-decoration: underline;
++  font-weight: 700;
++}
++/*the back and forward arrows*/
++.nav-arrows{
++  margin-top: 10px;
++  text-decoration: none;
++  display: flex;
++  align-items: center;
++  gap: 15px; /* This puts a nice small space between the < and > */
++  margin-right: auto;
++}
++.back-icon {
++  text-decoration: none;
++  height: 30px;
++  width: 30px;
++}
++
++/*main content  */
++.container {
++  display: flex;
++  justify-content: center;
++  align-items: center;
++  margin-top: 0px;
++  padding: 20px;
++}
++.group {
++  display: flex;
++  flex-direction: row; /* Aligns items side-by-side */
++  align-items: center;
++  gap: 40px; 
++}
++
++.word_box, .box {
++  background-color: #93d574; /* Darker green fill */
++  border: 15px solid #a8df8e; /* Lighter green thick border */
++}
++
++/* Text Box Styling */
++.word_box {
++  width: 600%;
++  max-width: fit-content;
++  height: auto;
++  box-sizing: border-box;
++  flex: 1;
++  font-size: 1.8rem;
++  font-weight: bold;
++  padding: 40px;
++  color: #23962f;
++  text-align: center;
++  line-height: 1.6;
++  display: flex;
++  align-items: center;
++  border-radius: 15px;
++  overflow: hidden;
++}
++.box {
++  width: 800px;
++  height: 500px;
++  flex: 1;
++  display: flex; /* Removes extra space under image */
++  border-radius: 15px;
++  overflow: hidden;
++}
++.box img {
++  width: 100%;
++  height: 100%;
++  object-fit: cover;
++  display: block;
++}
++
++/* Highlight current dropdown link (underline) */
++.dropdown-menu li a.active {
++  text-decoration: underline;
++  font-weight: 700;
++}
+\ No newline at end of file
+Index: timba_university/static/buttons_style.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/timba_university/static/buttons_style.css b/timba_university/static/buttons_style.css
+new file mode 100644
+--- /dev/null	(date 1770739189745)
++++ b/timba_university/static/buttons_style.css	(date 1770739189745)
+@@ -0,0 +1,193 @@
++* {
++  margin: 0;
++  padding: 0;
++  box-sizing: border-box; /* This helps with sizing calculations */
++  font-family: 'jost', sans-serif;
++}
++body {
++  background-color: #efffdb;
++}
++header {
++  display: flex;
++  justify-content: space-between;
++  align-items: center;
++  padding: 10px 50px;
++  height: auto;
++  background-color: #a8df8e;
++}
++.logo{
++  height: 60px; /* Adjust size to fit your header */
++  width: auto;
++  margin-right: 15px;
++}
++.uni{
++  font-size: 50px;
++  margin: 0 auto;
++}
++/*all the css code for the second header*/
++.second_header{
++  display: flex;
++  justify-content: space-between;
++  align-items: center;
++  padding: 0px 40px;
++  height: 30px; /* Reduced height for a slimmer second header */
++  background-color: #ffd8df;
++}
++.trigger {
++  margin: 0;
++  line-height: 30px;
++  font-weight: 700;
++  text-decoration: none;
++  color: black;
++  font-size: 20px;
++  display: inline-flex;
++  align-items: center;
++  padding: 0 10px;
++  text-align: right; 
++}
++/* Remove default bullet points and padding from the lists */
++.nav-menu, .dropdown-menu {
++  list-style: none;
++  padding: 0;
++  margin: 0;
++}
++.nav-menu{
++  display: flex;
++  margin-left: auto; /* This pushes the whole menu to the right side */
++  list-style: none;  /* Removes the bullet point dots */
++  padding: 0;
++  margin-top: 0;
++  margin-bottom: 0;
++}
++/* Make the parent relative so the dropdown knows where to align */
++.dropdown-container {
++  position: relative;
++  display: inline-block;
++}
++
++/* 1. Hide the menu by default */
++.dropdown-menu {
++  display: none; 
++  position: absolute;
++  background-color: #ffffff;
++  min-width: 120px;
++  box-shadow: 0px 8px 16px rgba(0,0,0,0.1); /* Adds a nice depth */
++  z-index: 1;
++  border-radius: 4px;
++  top: 100%; /* Positions it directly below the "..." */
++  right: 0;
++}
++
++/* Style the links inside the dropdown */
++.dropdown-menu li a {
++  color: black;
++  padding: 12px 16px;
++  text-decoration: none;
++  display: block;
++}
++
++/* 2. Show the menu on hover */
++.dropdown-container:hover .dropdown-menu {
++  display: block;
++}
++
++/* Optional: Change background color on hover */
++.dropdown-menu li a:hover {
++  background-color: #ffd8df;
++}
++/*home button*/
++.home-icon {
++  height: 22px;
++  width: 30px;
++  margin-left: auto; /* This pushes the icon to the right side */
++  display: flex;     /* Helps with alignment */
++}
++/*the back and forward arrows*/
++.nav-arrow{
++  text-decoration: none;
++  display: flex;
++  align-items: center;
++  gap: 15px; /* This puts a nice small space between the < and > */
++  margin-right: auto;
++}
++.forward-icon, .back-icon {
++  text-decoration: none;
++  height: 30px;
++  width: 30px;
++}
++
++/* The big boss container that sits icons side-by-side */
++.container{
++    display: flex;
++    flex-direction: row;      /* Puts Student and Teacher in a line */
++    justify-content: center;  /* Centers both groups on the screen */
++    gap: 60px;                /* Creates that nice space between the two */
++    padding-top: 50px;
++}
++
++/* Keeps the box and its label stacked perfectly */
++.group {
++    display: flex;
++    flex-direction: column;   /* Puts the label UNDER the box */
++    align-items: center;      /* Keeps the label centered under the box */
++    gap: 15px;                /* Space between box and label */
++}
++
++/* Your existing box styles */
++.box {
++    width: 350px; 
++    height: 350px;
++    background-color: #93d574;
++    border: 10px solid #a8df8e;
++    border-radius: 10px;
++    display: flex;
++    justify-content: center;
++    align-items: center;
++}
++
++/* Styling the labels to match your screenshot */
++.rec {
++    width: 350px;
++    height: 60px;
++    background-color: #93d574;
++    border: 10px solid #a8df8e;
++    border-radius: 5px;
++    display: flex;
++    justify-content: center;
++    align-items: center;
++    transition: all 0.3s ease;
++    
++    /* Font details */
++    color: black;
++    font-weight: bold;
++    font-size: 30px;
++    font-family: 'Michroma', sans-serif; /* Using that Display font we talked about! */
++}
++
++.box img {
++    width: 70%; /* Adjust size of your SVG icons */
++    height: auto;
++}
++
++.box {
++    transition: all 0.3s ease; /* This makes the animation smooth, not jumpy */
++    cursor: pointer;
++}
++
++.clickable-box, .clickable-letter {
++  display: inline-block;   /* IMPORTANT: Keeps the clickable area only on the box */
++  text-decoration: none;
++  color: inherit;
++  margin-bottom: 20px;     /* Space between the big box and the rectangle */
++}
++/*hover design for my clickable student*/
++.clickable-box:hover .box img{
++  transform: scale(1.1);
++} 
++
++.stud, .teach {
++    text-decoration: none; /* Removes underline */
++}
++
++
++
+Index: timba_university/static/Login_page.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/timba_university/static/Login_page.css b/timba_university/static/Login_page.css
+new file mode 100644
+--- /dev/null	(date 1770739189743)
++++ b/timba_university/static/Login_page.css	(date 1770739189743)
+@@ -0,0 +1,159 @@
++* {
++  margin: 0;
++  padding: 0;
++  box-sizing: border-box; /* This helps with sizing calculations */
++  font-family: 'jost', sans-serif;
++}
++body {
++  background-color: #efffdb;
++}
++header {
++  display: flex;
++  justify-content: space-between;
++  align-items: center;
++  padding: 10px 50px;
++  height: auto;
++  background-color: #a8df8e;
++}
++.logo{
++  height: 60px; /* Adjust size to fit your header */
++  width: auto;
++  margin-right: 15px;
++}
++.uni{
++  font-size: 50px;
++  margin: 0 auto;
++}
++/*all the css code for the second header*/
++.second_header{
++  display: flex;
++  justify-content: space-between;
++  align-items: center;
++  padding: 10px 40px;
++  height: 30px;
++  background-color: #ffd8df;
++}
++.trigger {
++  margin: 0;
++  line-height: 30px;
++  font-weight: 700;
++  text-decoration: none;
++  color: black;
++  font-size: 20px;
++  display: inline-flex;
++  align-items: center;
++  padding: 0 10px;
++  text-align: right; 
++}
++/* Remove default bullet points and padding from the lists */
++.nav-menu, .dropdown-menu {
++  list-style: none;
++  padding: 0;
++  margin: 0;
++}
++.nav-menu{
++  display: flex;
++  margin-left: auto; /* This pushes the whole menu to the right side */
++  list-style: none;  /* Removes the bullet point dots */
++  padding: 0;
++  margin-top: 0;
++  margin-bottom: 0;
++}
++/* Make the parent relative so the dropdown knows where to align */
++.dropdown-container {
++  position: relative;
++  display: inline-block;
++}
++
++/* 1. Hide the menu by default */
++.dropdown-menu {
++  display: none; 
++  position: absolute;
++  background-color: #ffffff;
++  min-width: 120px;
++  box-shadow: 0px 8px 16px rgba(0,0,0,0.1); /* Adds a nice depth */
++  z-index: 1;
++  border-radius: 4px;
++  top: 100%; /* Positions it directly below the "..." */
++  right: 0;
++}
++
++/* Style the links inside the dropdown */
++.dropdown-menu li a {
++  color: black;
++  padding: 12px 16px;
++  text-decoration: none;
++  display: block;
++}
++
++/* 2. Show the menu on hover */
++.dropdown-container:hover .dropdown-menu {
++  display: block;
++}
++
++/* Optional: Change background color on hover */
++.dropdown-menu li a:hover {
++  background-color: #ffd8df;
++}
++/*the back and forward arrows*/
++.nav-arrows{
++  margin-top: 10px;
++  text-decoration: none;
++  display: flex;
++  align-items: center;
++  gap: 15px; /* This puts a nice small space between the < and > */
++  margin-right: auto;
++}
++.back-icon {
++  text-decoration: none;
++  height: 30px;
++  width: 30px;
++}
++
++/*main content  */
++.container {
++  display: flex;
++  justify-content: center;
++  align-items: center;
++  margin-top: 30px;
++  padding: 20px;
++}
++.group {
++  display: flex;
++  flex-direction: row; /* Aligns items side-by-side */
++  align-items: center;
++  gap: 40px; 
++}
++
++.word_box, .box {
++  background-color: #93d574; /* Darker green fill */
++  border: 15px solid #a8df8e; /* Lighter green thick border */
++}
++
++/* Text Box Styling */
++.word_box {
++  width: 600%;
++  max-width: fit-content;
++  height: auto;
++  box-sizing: border-box;
++  flex: 1;
++  font-size: 1.8rem;
++  font-weight: bold;
++  padding: 40px;
++  color: #23962f;
++  text-align: center;
++  line-height: 1.6;
++  display: flex;
++  align-items: center;
++}
++.box {
++  width: 600px;
++  height:500px;
++  flex: 1;
++  display: flex; /* Removes extra space under image */
++}
++.box img {
++  width: 100%;
++  height: auto;
++  display: block;
++}
+\ No newline at end of file
+Index: timba_university/static/Login_style.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/timba_university/static/Login_style.css b/timba_university/static/Login_style.css
+new file mode 100644
+--- /dev/null	(date 1770739189744)
++++ b/timba_university/static/Login_style.css	(date 1770739189744)
+@@ -0,0 +1,355 @@
++* {
++  margin: 0;
++  padding: 0;
++  box-sizing: border-box; /* This helps with sizing calculations */
++  font-family: 'jost', sans-serif;
++}
++body {
++  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../pics/Login_pic.jpg');
++  background-attachment: fixed;
++  background-size: cover;
++  background-position: center;
++  min-height: 100vh;
++}
++header {
++  display: flex;
++  justify-content: space-between;
++  align-items: center;
++  padding: 10px 50px;
++  height: auto;
++  background-color: #a8df8e;
++}
++.logo{
++  height: 60px; /* Adjust size to fit your header */
++  width: auto;
++  margin-right: 15px;
++}
++.uni{
++  font-size: 50px;
++  margin: 0 auto;
++}
++/*all the css code for the second header*/
++.second_header{
++  display: flex;
++  justify-content: space-between;
++  align-items: center;
++  padding: 10px 40px;
++  height: 30px;
++  background-color: #ffd8df;
++}
++.trigger {
++  margin: 0;
++  line-height: 30px;
++  font-weight: 700;
++  text-decoration: none;
++  color: black;
++  font-size: 20px;
++  display: inline-flex;
++  align-items: center;
++  padding: 0 10px;
++  text-align: right; 
++}
++/* Remove default bullet points and padding from the lists */
++.nav-menu, .dropdown-menu {
++  list-style: none;
++  padding: 0;
++  margin: 0;
++}
++.nav-menu{
++  display: flex;
++  margin-left: auto; /* This pushes the whole menu to the right side */
++  list-style: none;  /* Removes the bullet point dots */
++  padding: 0;
++  margin-top: 0;
++  margin-bottom: 0;
++}
++/* Make the parent relative so the dropdown knows where to align */
++.dropdown-container {
++  position: relative;
++  display: inline-block;
++}
++
++/* 1. Hide the menu by default */
++.dropdown-menu {
++  display: none; 
++  position: absolute;
++  background-color: #ffffff;
++  min-width: 120px;
++  box-shadow: 0px 8px 16px rgba(0,0,0,0.1); /* Adds a nice depth */
++  z-index: 1;
++  border-radius: 4px;
++  top: 100%; /* Positions it directly below the "..." */
++  right: 0;
++}
++
++/* Style the links inside the dropdown */
++.dropdown-menu li a {
++  color: black;
++  padding: 12px 16px;
++  text-decoration: none;
++  display: block;
++}
++
++/* 2. Show the menu on hover */
++.dropdown-container:hover .dropdown-menu {
++  display: block;
++}
++
++/* Optional: Change background color on hover */
++.dropdown-menu li a:hover {
++  background-color: #ffd8df;
++}
++
++/* Underline the logout/login link */
++.dropdown-menu li a.logout-link {
++  text-decoration: underline;
++  font-weight: 700;
++}
++/*the back and forward arrows*/
++.nav-arrows{
++  margin-top: 10px;
++  text-decoration: none;
++  display: flex;
++  align-items: center;
++  gap: 15px; /* This puts a nice small space between the < and > */
++  margin-right: auto;
++}
++.back-icon {
++  text-decoration: none;
++  height: 30px;
++  width: 30px;
++}
++
++/*main content  */
++.container {
++  display: flex;
++  justify-content: flex-start;
++  align-items: flex-start;
++  margin-top: 0px;
++  padding: 20px 20px 20px 20px; /* Reduced left padding to move box further left */
++}
++.group {
++  display: flex;
++  flex-direction: row; /* Aligns items side-by-side */
++  align-items: center;
++  gap: 40px; 
++}
++
++.word_box, .box {
++  background-color: #93d574; /* Darker green fill */
++  border: 15px solid #a8df8e; /* Lighter green thick border */
++}
++
++/* Text Box Styling */
++.word_box {
++  width: 600%;
++  max-width: fit-content;
++  height: auto;
++  box-sizing: border-box;
++  flex: 1;
++  font-size: 1.8rem;
++  font-weight: bold;
++  padding: 40px;
++  color: #23962f;
++  text-align: center;
++  line-height: 1.6;
++  display: flex;
++  align-items: center;
++}
++.box {
++  width: 900px;
++  height:550px;
++  flex: 1;
++  display: flex; /* Removes extra space under image */
++  align-items: flex-start;
++}
++.box img {
++  width: 100%;
++  height: 100%;
++  object-fit: cover;
++  display: block;
++}
++
++/* ==================== LOGIN FORM STYLES ==================== */
++
++/* Main login container with two columns (form + image) */
++.login-container {
++  display: flex;
++  flex-direction: column;
++  justify-content: center;
++  align-items: center;
++  gap: 40px;
++  margin: 40px auto;
++  max-width: 450px;
++  padding: 20px;
++  min-height: 60vh;
++}
++
++/* Login form box styling */
++.login-box {
++  background-color: rgba(255, 255, 255, 0.95);
++  backdrop-filter: blur(10px);
++  -webkit-backdrop-filter: blur(10px);
++  padding: 40px;
++  border-radius: 15px;
++  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
++  border: 1px solid rgba(255, 255, 255, 0.2);
++  width: 100%;
++  max-width: 400px;
++}
++
++.login-box h2 {
++  text-align: center;
++  color: #1f1f1f;
++  margin-bottom: 30px;
++  font-size: 28px;
++}
++
++/* Form group styling (for labels and inputs) */
++.form-group {
++  margin-bottom: 20px;
++  display: flex;
++  flex-direction: column;
++}
++
++.form-group label {
++  margin-bottom: 8px;
++  color: #333;
++  font-weight: 600;
++  font-size: 14px;
++}
++
++/* Input fields styling */
++.form-group input[type="text"],
++.form-group input[type="password"],
++.form-group input[type="email"] {
++  padding: 12px;
++  border: 2px solid #ddd;
++  border-radius: 5px;
++  font-size: 14px;
++  transition: border-color 0.3s ease;
++}
++
++.form-group input[type="text"]:focus,
++.form-group input[type="password"]:focus,
++.form-group input[type="email"]:focus {
++  outline: none;
++  border-color: #a8df8e;
++  box-shadow: 0 0 5px rgba(168, 223, 142, 0.3);
++}
++
++/* Checkbox styling */
++.form-group.checkbox {
++  flex-direction: row;
++  align-items: center;
++  margin-bottom: 25px;
++}
++
++.form-group.checkbox input[type="checkbox"] {
++  margin-right: 8px;
++  cursor: pointer;
++  width: 16px;
++  height: 16px;
++}
++
++.form-group.checkbox label {
++  margin-bottom: 0;
++  font-weight: 400;
++  cursor: pointer;
++}
++
++/* Login button styling */
++.login-btn {
++  width: 100%;
++  padding: 12px;
++  background-color: #a8df8e;
++  color: white;
++  border: none;
++  border-radius: 5px;
++  font-size: 16px;
++  font-weight: bold;
++  cursor: pointer;
++  transition: background-color 0.3s ease;
++}
++
++.login-btn:hover {
++  background-color: #8bc869;
++}
++
++.login-btn:active {
++  transform: scale(0.98);
++}
++
++/* Login footer with links */
++.login-footer {
++  text-align: center;
++  margin-top: 20px;
++  font-size: 13px;
++}
++
++.login-footer a {
++  color: #a8df8e;
++  text-decoration: none;
++  font-weight: 600;
++}
++
++.login-footer a:hover {
++  text-decoration: underline;
++}
++
++.login-footer span {
++  margin: 0 10px;
++  color: #ccc;
++}
++
++/* Error message styling */
++.error-message {
++  background-color: #ff6b6b;
++  color: white;
++  padding: 12px 16px;
++  border-radius: 5px;
++  margin-bottom: 15px;
++  font-size: 14px;
++  font-weight: 600;
++  text-align: center;
++  border-left: 4px solid #d32f2f;
++}
++
++.error-message p {
++  margin: 0;
++}
++
++/* Login image side */
++.login-image {
++  width: 800px;
++  height: 500px;
++  flex: 1;
++  display: none;
++  border-radius: 15px;
++  overflow: hidden;
++  background-color: #93d574;
++  border: 15px solid #a8df8e;
++}
++
++.login-image img {
++  width: 100%;
++  height: 100%;
++  object-fit: cover;
++}
++
++/* Responsive design */
++@media (max-width: 768px) {
++  .login-container {
++    flex-direction: column;
++    gap: 20px;
++  }
++
++  .login-box {
++    max-width: 100%;
++  }
++
++  .login-image {
++    display: block;
++    max-height: 300px;
++  }
++}
+\ No newline at end of file

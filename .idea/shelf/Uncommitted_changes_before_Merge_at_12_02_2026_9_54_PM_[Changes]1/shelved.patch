@@ -1,0 +1,94 @@
+Index: app.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app.py b/app.py
+new file mode 100644
+--- /dev/null	(date 1770904472841)
++++ b/app.py	(date 1770904472841)
+@@ -0,0 +1,41 @@
++from flask import Flask, render_template, request, redirect, url_for
++from db import get_db_connection
++
++app = Flask(__name__)
++
++@app.route("/", methods=["GET", "POST"])
++def login():
++    if request.method == "POST":
++        username = request.form["username"]
++        password = request.form["password"]
++
++        # TEMPORARY LOGIN CHECK (for demo)
++        if username == "CedsParty67" and password == "Welcome2CiddysParty":
++            return redirect(url_for("button"))
++        else:
++            return render_template("Login_page.html", error=True)
++
++    return render_template("Login_page.html")
++@app.route("/button")
++def button():
++    return render_template("button.html")
++
++@app.route("/subjects")
++def subjects():
++    conn = get_db_connection()
++    cursor = conn.cursor(dictionary=True)
++
++    cursor.execute("""
++        SELECT Subjects.SubjectID, SubjectName, Units,
++               CONCAT(TeacherFN, ' ', TeacherLN) AS Teacher
++        FROM Subjects
++        LEFT JOIN Teachers ON Subjects.TeacherID = Teachers.TeacherID
++    """)
++
++    subjects = cursor.fetchall()
++    conn.close()
++
++    return render_template("Subject_Table.html", subjects=subjects)
++
++if __name__ == "__main__":
++    app.run(debug=True)
+\ No newline at end of file
+Index: db.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/db.py b/db.py
+new file mode 100644
+--- /dev/null	(date 1770904472842)
++++ b/db.py	(date 1770904472842)
+@@ -0,0 +1,11 @@
++import mysql.connector
++
++def get_db_connection():
++    return mysql.connector.connect(
++        host="localhost",
++        user="root",
++        password="password",   # XAMPP default
++        database="teambadb"
++    )
++
++
+Index: templates/students_page.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/students_page.html b/templates/students_page.html
+new file mode 100644
+--- /dev/null	(date 1770904472858)
++++ b/templates/students_page.html	(date 1770904472858)
+@@ -0,0 +1,10 @@
++<!DOCTYPE html>
++<html lang="en">
++<head>
++    <meta charset="UTF-8">
++    <title>Title</title>
++</head>
++<body>
++
++</body>
++</html>
+\ No newline at end of file

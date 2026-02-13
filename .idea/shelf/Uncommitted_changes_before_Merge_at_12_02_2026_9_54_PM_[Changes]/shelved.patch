@@ -1,0 +1,515 @@
+Index: timba_university/templates/About_page.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/timba_university/templates/About_page.html b/templates/About_page.html
+rename from timba_university/templates/About_page.html
+rename to templates/About_page.html
+--- a/timba_university/templates/About_page.html	(revision ca8ad9ef835a41436667488f0aebcb74e5f22376)
++++ b/templates/About_page.html	(date 1770904472856)
+@@ -3,43 +3,44 @@
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <link rel="stylesheet" href="../static/About_style.css">
+-    <title>Document</title>
++    <link rel="stylesheet" href="/static/css/About_style.css">
++    <title>About</title>
+ </head>
+ <body>
+-    <header>
+-
+-        <img src="../pics/logo.png" class="logo" alt="TU Logo">
+-        <h4 div class = "uni">TEAMBA UNIVERSITY</h4>  
+-
+-    </header>
+-      <!--this is the second header we're y'all see the bottons of home andd arrows-->
+-    <div class = "second_header">
+-        <div class="nav-arrows">
+-            <a href="button.html" class="back-icon">
+-                <img src="../pics/keyboard_arrow_left_24dp_1F1F1F.svg">
+-            </a>
+-        </div>
+-        <ul class="nav-menu">
+-            <li class="dropdown-container">
+-                <a href="#" class="trigger">...</a>
+-                <ul class="dropdown-menu">
+-                    <li><a href="Login_page.html">Log out</a></li>
+-                    <li><a href="About_page.html" class="active">About</a></li>
+-                </ul>
+-            </li>
+-        </ul>
+-    </div>
+-    <div class="container">
+-        <div class="group">
+-            <div class="word_box">Teamba Academy
+-is a specialized web platform built to bridge the gap between students and teachers in a high school setting. It serves as a digital campus where administrative tasks like choosing classes and managing rosters are handled through a clean, intuitive interface.
+-            </div>
++<header>
++    <img src="/static/pics/logo.png" class="logo" alt="TU Logo">
++    <h4 class="uni">TEAMBA UNIVERSITY</h4>
++</header>
++
++<div class="second_header">
++    <div class="nav-arrows">
++        <a href="/button" class="back-icon">
++            <img src="/static/pics/keyboard_arrow_left_24dp_1F1F1F.svg">
++        </a>
++    </div>
++
++    <ul class="nav-menu">
++        <li class="dropdown-container">
++            <a href="#" class="trigger">...</a>
++            <ul class="dropdown-menu">
++                <li><a href="/">Log out</a></li>
++                <li><a href="/about" class="active">About</a></li>
++            </ul>
++        </li>
++    </ul>
++</div>
++
++<div class="container">
++    <div class="group">
++        <div class="word_box">
++            Teamba Academy is a specialized web platform built to bridge the gap
++            between students and teachers in a high school setting.
++        </div>
+ 
+-            <div class="box">
+-                <img src="../pics/about_pic.jpg" alt="pic">
+-            </div>
+-        </div>
+-    </div>
+-</body> 
+-</html>
+\ No newline at end of file
++        <div class="box">
++            <img src="/static/pics/about_pic.jpg" alt="About">
++        </div>
++    </div>
++</div>
++</body>
++</html>
+Index: timba_university/templates/button.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/timba_university/templates/button.html b/templates/button.html
+rename from timba_university/templates/button.html
+rename to templates/button.html
+--- a/timba_university/templates/button.html	(revision ca8ad9ef835a41436667488f0aebcb74e5f22376)
++++ b/templates/button.html	(date 1770904472857)
+@@ -3,60 +3,60 @@
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <link rel="stylesheet" href="../static/buttons_style.css">
++    <link rel="stylesheet" href="/static/css/buttons_style.css">
+     <title>Teamba University</title>
+ </head>
+ <body>
+-    <header>
+-        <img src="../pics/logo.png" class="logo" alt="TU Logo">
+-        <h4 div class = "uni">TEAMBA UNIVERSITY</h4>
+-    </header>
++<header>
++    <img src="/static/pics/logo.png" class="logo" alt="TU Logo">
++    <h4 class="uni">TEAMBA UNIVERSITY</h4>
++</header>
+ 
+-    <!--this is the second header we're y'all see the bottons of home andd arrows-->
+-   <div class="second_header">
+-        <ul class="nav-menu">
+-            <li class="dropdown-container">
+-                <a href="#" class="trigger">...</a>
+-                <ul class="dropdown-menu">
+-                    <li><a href="Login_page.html">Log out</a></li>
+-                    <li><a href="About_page.html">About</a></li>
+-                </ul>
+-            </li>
+-        </ul>
+-    </div>
++<div class="second_header">
++    <ul class="nav-menu">
++        <li class="dropdown-container">
++            <a href="#" class="trigger">...</a>
++            <ul class="dropdown-menu">
++                <li><a href="/">Log out</a></li>
++                <li><a href="/about">About</a></li>
++            </ul>
++        </li>
++    </ul>
++</div>
+ 
+-    <!--main content-->
+ <div class="container">
+     <div class="group">
+-        <a href="#" class="clickable-box">
++        <a href="/students" class="clickable-box">
+             <div class="box">
+-                <img src="../pics/user-graduate-solid.svg" alt="student">
++                <img src="/static/pics/user-graduate-solid.svg" alt="student">
+             </div>
+-        </a>  
+-        <a href="" class="stud">
+-            <div class="rec">Student</div> 
+-        </a> 
++        </a>
++        <a href="/students" class="stud">
++            <div class="rec">Student</div>
++        </a>
+     </div>
++
+     <div class="group">
+-        <a href="Subject_Table.html" class="clickable-box">
++        <a href="/subjects" class="clickable-box">
+             <div class="box">
+-                <img src="../pics/books.svg" alt="books">
++                <img src="/static/pics/books.svg" alt="books">
+             </div>
+         </a>
+-        <a href="page4.html" class="clickable-letter">
+-            <div class="rec" >Subjects</div>
++        <a href="/subjects" class="clickable-letter">
++            <div class="rec">Subjects</div>
+         </a>
+     </div>
++
+     <div class="group">
+         <a href="#" class="clickable-box">
+             <div class="box">
+-                <img src="../pics/teacher-logo.svg" alt="teacher">
++                <img src="/static/pics/teacher-logo.svg" alt="teacher">
+             </div>
+         </a>
+-        <a href="" class="teach">
++        <a href="#" class="teach">
+             <div class="rec">Teacher</div>
+         </a>
+     </div>
+ </div>
+ </body>
+-</html>
+\ No newline at end of file
++</html>
+Index: timba_university/templates/Login_page.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/timba_university/templates/Login_page.html b/templates/Login_page.html
+rename from timba_university/templates/Login_page.html
+rename to templates/Login_page.html
+--- a/timba_university/templates/Login_page.html	(revision ca8ad9ef835a41436667488f0aebcb74e5f22376)
++++ b/templates/Login_page.html	(date 1770904472856)
+@@ -3,142 +3,65 @@
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <link rel="stylesheet" href="../static/Login_style.css">
+-    <title>Document</title>
++    <link rel="stylesheet" href="/static/css/Login_style.css">
++    <title>Login</title>
+ </head>
+ <body>
+-    <header>
+-
+-        <img src="../pics/logo.png" class="logo" alt="TU Logo">
+-        <h4 div class = "uni">TEAMBA UNIVERSITY</h4>  
+-
+-    </header>
+-      <!--this is the second header we're y'all see the bottons of home andd arrows-->
+-    <div class = "second_header">
+-        <div class="nav-arrows">
+-            <a href="button.html" class="back-icon">
+-                <img src="../pics/keyboard_arrow_left_24dp_1F1F1F.svg">
+-            </a>
+-        </div>
+-        <ul class="nav-menu">
+-            <li class="dropdown-container">
+-                <a href="#" class="trigger">...</a>
+-                <ul class="dropdown-menu">
+-                    <li><a href="Login_page.html" class="logout-link">Log in</a></li>
+-                    <li><a href="About_page.html">About</a></li>
+-                </ul>
+-            </li>
+-        </ul>
+-    </div>
+-    <!-- MAIN LOGIN FORM SECTION ↓↓↓ THIS IS THE LOGIN FEATURE ↓↓↓ -->
+-    <div class="login-container">
+-        <div class="login-box">
+-            <h2>Login</h2>
+-            
+-            <!-- ERROR MESSAGE -->
+-            <div id="errorMessage" class="error-message" style="display:none;">
+-                <p>Invalid username. Please try again.</p>
+-            </div>
+-            
+-            <!-- THIS IS THE LOGIN FORM - Send POST request to your backend -->
+-            <form id="loginForm" method="POST" action="/login/">
+-                
+-                <!-- USERNAME/EMAIL INPUT -->
+-                <div class="form-group">
+-                    <label for="username">Username or Email:</label>
+-                    <input 
+-                        type="text" 
+-                        id="username" 
+-                        name="username" 
+-                        placeholder="Enter your username or email"
+-                        value="CedsParty67"
+-                        required
+-                    >
+-                </div>
+-                
+-                <!-- PASSWORD INPUT -->
+-                <div class="form-group">
+-                    <label for="password">Password:</label>
+-                    <input 
+-                        type="password" 
+-                        id="password" 
+-                        name="password" 
+-                        placeholder="Enter your password"
+-                        value="Welcome2CiddysParty"
+-                        required
+-                    >
+-                </div>
+-                
+-                <!-- REMEMBER ME CHECKBOX (OPTIONAL) -->
+-                <div class="form-group checkbox">
+-                    <input type="checkbox" id="remember" name="remember">
+-                    <label for="remember">Remember me</label>
+-                </div>
+-                
+-                <!-- LOGIN BUTTON -->
+-                <button type="submit" class="login-btn">Login</button>
+-            </form>
+-            <!-- END OF LOGIN FORM ↑↑↑ -->
+-            
+-            <!-- ADDITIONAL LINKS -->
+-            <div class="login-footer">
+-                <a href="#forgot-password">Forgot Password?</a>
+-                <span>|</span>
+-                <a href="#signup">Sign Up</a>
+-            </div>
+-        </div>
+-        
+-        <!-- OPTIONAL: LOGIN IMAGE SIDE -->
+-        <div class="login-image">
+-            <img src="../pics/Login_pic.jpg" alt="University Campus">
+-        </div>
+-    </div>
+-    <!-- END OF LOGIN FORM SECTION ↑↑↑ -->
+-
+-    <script>
+-        // Credentials validation
+-        const correctUsername = "CedsParty67";
+-        const correctPassword = "Welcome2CiddysParty";
+-        
+-        const usernameInput = document.getElementById('username');
+-        const passwordInput = document.getElementById('password');
+-        const loginForm = document.getElementById('loginForm');
+-        const errorMessage = document.getElementById('errorMessage');
+-        
+-        // Real-time username validation
+-        usernameInput.addEventListener('input', function() {
+-            if (this.value !== correctUsername && this.value.length > 0) {
+-                errorMessage.textContent = 'Invalid username. Please try again.';
+-                errorMessage.style.display = 'block';
+-            } else {
+-                errorMessage.style.display = 'none';
+-            }
+-        });
+-        
+-        // Form submission validation
+-        loginForm.addEventListener('submit', function(event) {
+-            event.preventDefault(); // Prevent default form submission
+-            
+-            const username = usernameInput.value;
+-            const password = passwordInput.value;
+-            
+-            // Check if credentials are correct
+-            if (username === correctUsername && password === correctPassword) {
+-                // Credentials are correct - you can proceed with login
+-                alert('Login successful!');
+-                // You can redirect or submit the form here
+-                window.location.href = 'button.html';
+-            } else if (username !== correctUsername) {
+-                errorMessage.textContent = 'Invalid username. Please try again.';
+-                errorMessage.style.display = 'block';
+-            } else if (password !== correctPassword) {
+-                errorMessage.textContent = 'Invalid password. Please try again.';
+-                errorMessage.style.display = 'block';
+-            } else {
+-                errorMessage.textContent = 'Invalid username or password.';
+-                errorMessage.style.display = 'block';
+-            }
+-        });
+-    </script>
+-</body> 
+-</html>
+\ No newline at end of file
++<header>
++    <img src="/static/pics/logo.png" class="logo" alt="TU Logo">
++    <h4 class="uni">TEAMBA UNIVERSITY</h4>
++</header>
++
++<div class="second_header">
++    <ul class="nav-menu">
++        <li class="dropdown-container">
++            <a href="#" class="trigger">...</a>
++            <ul class="dropdown-menu">
++                <li><a href="/">Log in</a></li>
++                <li><a href="/about">About</a></li>
++            </ul>
++        </li>
++    </ul>
++</div>
++
++<div class="login-container">
++    <div class="login-box">
++        <h2>Login</h2>
++
++        <div id="errorMessage" class="error-message" style="display:none;">
++            <p>Invalid username or password.</p>
++        </div>
++
++        <!-- DO NOT CHANGE DESIGN – only routing -->
++        <form id="loginForm" method="POST" action="/">
++            <div class="form-group">
++                <label for="username">Username or Email:</label>
++                <input type="text" id="username" name="username" required>
++            </div>
++
++            <div class="form-group">
++                <label for="password">Password:</label>
++                <input type="password" id="password" name="password" required>
++            </div>
++
++            <div class="form-group checkbox">
++                <input type="checkbox" id="remember" name="remember">
++                <label for="remember">Remember me</label>
++            </div>
++
++            <button type="submit" class="login-btn">Login</button>
++        </form>
++
++        <div class="login-footer">
++            <a href="#">Forgot Password?</a>
++            <span>|</span>
++            <a href="#">Sign Up</a>
++        </div>
++    </div>
++
++    <div class="login-image">
++        <img src="/static/pics/Login_pic.jpg" alt="University Campus">
++    </div>
++</div>
++</body>
++</html>
+Index: timba_university/templates/Subject_Table.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/timba_university/templates/Subject_Table.html b/templates/Subject_Table.html
+rename from timba_university/templates/Subject_Table.html
+rename to templates/Subject_Table.html
+--- a/timba_university/templates/Subject_Table.html	(revision ca8ad9ef835a41436667488f0aebcb74e5f22376)
++++ b/templates/Subject_Table.html	(date 1770904472857)
+@@ -3,39 +3,36 @@
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <link rel="stylesheet" href="../static/Subject_style.css">
+-    <title>Teamba University</title>
++    <link rel="stylesheet" href="/static/css/Subject_style.css">
++    <title>Subject Table</title>
+ </head>
+ <body>
+-    <header>
+-
+-        <img src="../pics/logo.png" class="logo" alt="TU Logo">
+-        <h4 div class = "uni">TEAMBA UNIVERSITY</h4>  
+-
+-    </header>
++<header>
++    <img src="/static/pics/logo.png" class="logo" alt="TU Logo">
++    <h4 class="uni">TEAMBA UNIVERSITY</h4>
++</header>
+ 
+-    <!--this is the second header we're y'all see the bottons of home andd arrows-->
+-    <div class = "second_header">
+-        <div class="nav-arrows">
+-            <a href="button.html" class="back-icon">
+-                <img src="../pics/keyboard_arrow_left_24dp_1F1F1F.svg">
+-            </a>
+-        </div>
+-        <ul class="nav-menu">
+-            <li class="dropdown-container">
+-                <a href="#" class="trigger">...</a>
+-                <ul class="dropdown-menu">
+-                    <li><a href="#">Log out</a></li>
+-                    <li><a href="About_page.html">About</a></li>
+-                </ul>
+-            </li>
+-        </ul>
+-    </div>
++<div class="second_header">
++    <div class="nav-arrows">
++        <a href="/button" class="back-icon">
++            <img src="/static/pics/keyboard_arrow_left_24dp_1F1F1F.svg">
++        </a>
++    </div>
++
++    <ul class="nav-menu">
++        <li class="dropdown-container">
++            <a href="#" class="trigger">...</a>
++            <ul class="dropdown-menu">
++                <li><a href="/">Log out</a></li>
++                <li><a href="/about">About</a></li>
++            </ul>
++        </li>
++    </ul>
++</div>
+ 
+-    <!--all in this class: main-content is the box at the center-->
+ <div class="main-content">
+     <div class="box" id="box1"></div>
+     <div class="rec" id="rec2">Subject Table</div>
+ </div>
+ </body>
+-</html>
+\ No newline at end of file
++</html>
+diff --git a/timba_university/pics/teacher-logo.svg b/static/pics/teacher-logo.svg
+rename from timba_university/pics/teacher-logo.svg
+rename to static/pics/teacher-logo.svg
+diff --git a/timba_university/pics/user-graduate-solid.svg b/static/pics/user-graduate-solid.svg
+rename from timba_university/pics/user-graduate-solid.svg
+rename to static/pics/user-graduate-solid.svg
+diff --git a/timba_university/static/About_style.css b/static/css/About_style.css
+rename from timba_university/static/About_style.css
+rename to static/css/About_style.css
+diff --git a/timba_university/static/buttons_style.css b/static/css/buttons_style.css
+rename from timba_university/static/buttons_style.css
+rename to static/css/buttons_style.css
+diff --git a/timba_university/static/Login_page.css b/static/css/Login_page.css
+rename from timba_university/static/Login_page.css
+rename to static/css/Login_page.css
+diff --git a/timba_university/static/Login_style.css b/static/css/Login_style.css
+rename from timba_university/static/Login_style.css
+rename to static/css/Login_style.css
+diff --git a/timba_university/static/Subject_style.css b/static/css/Subject_style.css
+rename from timba_university/static/Subject_style.css
+rename to static/css/Subject_style.css
+diff --git a/timba_university/pics/books.svg b/static/pics/books.svg
+rename from timba_university/pics/books.svg
+rename to static/pics/books.svg
+diff --git a/timba_university/pics/keyboard_arrow_left_24dp_1F1F1F.svg b/static/pics/keyboard_arrow_left_24dp_1F1F1F.svg
+rename from timba_university/pics/keyboard_arrow_left_24dp_1F1F1F.svg
+rename to static/pics/keyboard_arrow_left_24dp_1F1F1F.svg
+diff --git a/timba_university/pics/keyboard_arrow_right_24dp_1F1F1F.svg b/static/pics/keyboard_arrow_right_24dp_1F1F1F.svg
+rename from timba_university/pics/keyboard_arrow_right_24dp_1F1F1F.svg
+rename to static/pics/keyboard_arrow_right_24dp_1F1F1F.svg
