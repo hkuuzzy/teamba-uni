@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Subject</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #48bb78;
+            padding-bottom: 15px;
+        }
+
+        .subject-info {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #48bb78;
+            outline: none;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-update {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-update:hover {
+            background: #38a169;
+            transform: translateY(-2px);
+        }
+
+        .btn-cancel {
+            background: #a0aec0;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .btn-cancel:hover {
+            background: #718096;
+            transform: translateY(-2px);
+        }
+
+        .flash-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .required::after {
+            content: " *";
+            color: #e53e3e;
+        }
+
+        .hint {
+            color: #718096;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✏️ Edit Subject</h1>
+        <div class="subtitle">Update subject information</div>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if subject %}
+            <!-- Subject Info -->
+            <div class="subject-info">
+                <strong>Subject ID:</strong> #{{ subject.SubjectID }}<br>
+                <strong>Current Name:</strong> {{ subject.SubjectName }}<br>
+                {% if subject.TeacherFullName %}
+                    <strong>Current Teacher:</strong> {{ subject.TeacherFullName }}
+                {% endif %}
+            </div>
+
+            <!-- Edit Form -->
+            <form action="/update_subject/{{ subject.SubjectID }}" method="POST">
+                <div class="form-group">
+                    <label class="required">Subject Name</label>
+                    <input type="text" name="SubjectName" value="{{ subject.SubjectName }}"
+                           required maxlength="50">
+                    <div class="hint">Maximum 50 characters</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Units</label>
+                    <input type="number" name="Units" value="{{ subject.Units }}"
+                           required min="1" max="10" step="1">
+                    <div class="hint">Between 1 and 10 units</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Assign Teacher</label>
+                    <select name="TeacherID">
+                        <option value="">-- No Teacher (Unassigned) --</option>
+                        {% if teachers %}
+                            {% for teacher in teachers %}
+                                <option value="{{ teacher.TeacherID }}"
+                                    {% if teacher.TeacherID == subject.TeacherID %}
+                                        selected
+                                    {% endif %}>
+                                    {{ teacher.FullName }}
+                                </option>
+                            {% endfor %}
+                        {% endif %}
+                    </select>
+                    <div class="hint">Leave unassigned if no teacher</div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <button type="submit" class="btn btn-update">💾 Update Subject</button>
+                    <a href="/" class="btn btn-cancel">↩️ Cancel</a>
+                </div>
+            </form>
+        {% else %}
+            <p style="color: #e53e3e; text-align: center;">Subject not found!</p>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="/" class="btn btn-update">← Back to Subjects</a>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
