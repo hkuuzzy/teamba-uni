@@ -319,7 +319,6 @@ def update_subject(subject_id):
 
     return redirect(url_for('index'))
 
-
 #run app
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
