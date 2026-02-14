@@ -3,39 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/Teacher_style.css">
+
+    <!-- Flask static CSS -->
+   <link rel="stylesheet" href="/static/css/Teacher_style.css">
+
     <title>Teamba University</title>
 </head>
 <body>
-    <header>
 
-        <img src="../pics/logo.png" class="logo" alt="TU Logo">
-        <h4 div class = "uni">TEAMBA UNIVERSITY</h4>
+<header>
+    <!-- Logo -->
+    <img src="/static/pics/logo.png" class="logo" alt="TU Logo">
+    <h4 class="uni">TEAMBA UNIVERSITY</h4>
+</header>
 
-    </header>
-
-    <!--this is the second header we're y'all see the bottons of home andd arrows-->
-    <div class = "second_header">
-        <div class="nav-arrows">
-            <a href="button.html" class="back-icon">
-                <img src="../pics/keyboard_arrow_left_24dp_1F1F1F.svg">
-            </a>
-        </div>
-        <ul class="nav-menu">
-            <li class="dropdown-container">
-                <a href="#" class="trigger">...</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Log out</a></li>
-                    <li><a href="About_page.html">About</a></li>
-                </ul>
-            </li>
-        </ul>
+<!-- SECOND HEADER -->
+<div class="second_header">
+    <div class="nav-arrows">
+        <a href="/button" class="back-icon">
+            <img src="/static/pics/keyboard_arrow_left_24dp_1F1F1F.svg">
+        </a>
     </div>
 
-    <!--all in this class: main-content is the box at the center-->
+    <ul class="nav-menu">
+        <li class="dropdown-container">
+            <a href="#" class="trigger">...</a>
+            <ul class="dropdown-menu">
+               <li><a href="/">Log out</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<!-- MAIN CONTENT -->
 <div class="main-content">
     <div class="box" id="box1"></div>
     <div class="rec" id="rec2">Teachers Table</div>
 </div>
+
 </body>
 </html>

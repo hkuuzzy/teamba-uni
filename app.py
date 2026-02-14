@@ -42,6 +42,13 @@ def subjects():
 
     return render_template("Subject_Table.html", subjects=subjects)
 
+@app.route("/students")
+def students():
+    return render_template("Students_page.html")
+
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 
