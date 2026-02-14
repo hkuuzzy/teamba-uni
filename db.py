@@ -5,4 +5,5 @@ db_config = {
     'password': 'SQL1234',        # Add your MySQL password
     'port': 3306
 }
+#whale
 
