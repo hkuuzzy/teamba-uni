@@ -44,7 +44,24 @@ def subjects():
 
 @app.route("/students")
 def students():
-    return render_template("Students_page.html")
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    cursor.execute("SELECT * FROM students")
+    Students = cursor.fetchall()
+
+    conn.close()
+    return render_template("Student_Table.html", students=students)
+@app.route("/teachers")
+def teachers():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    cursor.execute("SELECT * FROM teachers")
+    Teachers = cursor.fetchall()
+
+    conn.close()
+    return render_template("Teacher_Table.html", teachers=teachers)
 
 
 
