@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subject CRUD</title>
+    <title>Student Management System</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #a8df8e 0%, #a8df8e 100%);
             padding: 30px;
             min-height: 100vh;
         }
@@ -35,7 +35,7 @@
         .subtitle {
             color: #666;
             margin-bottom: 30px;
-            border-bottom: 2px solid #667eea;
+            border-bottom: 2px solid #4299e1;
             padding-bottom: 15px;
         }
 
@@ -68,7 +68,7 @@
 
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             margin-bottom: 20px;
         }
@@ -94,7 +94,7 @@
 
         .form-group input:focus,
         .form-group select:focus {
-            border-color: #667eea;
+            border-color: #4299e1;
             outline: none;
         }
 
@@ -111,12 +111,12 @@
         }
 
         .btn-primary {
-            background: #667eea;
+            background: #4299e1;
             color: white;
         }
 
         .btn-primary:hover {
-            background: #5a67d8;
+            background: #3182ce;
             transform: translateY(-2px);
         }
 
@@ -146,7 +146,7 @@
         }
 
         th {
-            background: #4a5568;
+            background: #2c3e50;
             color: white;
             padding: 15px;
             text-align: left;
@@ -185,94 +185,116 @@
 </head>
 <body>
     <div class="container">
-        <h1>📚 Subject Management System</h1>
-        <div class="subtitle">Complete CRUD Operations for Subjects Table</div>
+        <h1>👥 Student Management System</h1>
+        <div class="subtitle">TEAMBA UNIVERSITY</div>
+    <!-- Navigation Bar - Add this after <h1> or before Flash Messages -->
+<div style="display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; background: #f8f9fa; padding: 15px; border-radius: 10px;">
+    <a href="/" style="padding: 10px 20px; background: {% if request.path == '/' %}linear-gradient(135deg, #667eea 0%, #667eea 100%){% else %}#667eea{% endif %}; color: white; text-decoration: none; border-radius: 5px; font-weight: {% if request.path == '/' %}bold{% else %}normal{% endif %}; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        📚 Subjects
+    </a>
+    <a href="/students" style="padding: 10px 20px; background: {% if request.path == '/students' %}linear-gradient(135deg, #4299e1 0%, #4299e1 100%){% else %}#4299e1{% endif %}; color: white; text-decoration: none; border-radius: 5px; font-weight: {% if request.path == '/students' %}bold{% else %}normal{% endif %}; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        👥 Students
+    </a>
+    <a href="/teachers" style="padding: 10px 20px; background: {% if request.path == '/teachers' %}linear-gradient(135deg, #48bb78 0%, #48bb78 100%){% else %}#48bb78{% endif %}; color: white; text-decoration: none; border-radius: 5px; font-weight: {% if request.path == '/teachers' %}bold{% else %}normal{% endif %}; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        👨‍🏫 Teachers
+    </a>
+</div>
 
         <!-- Flash Messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
-                    <div class="flash-{{ category }}">
-                        {{ message }}
-                    </div>
+                    <div class="flash-{{ category }}">{{ message }}</div>
                 {% endfor %}
             {% endif %}
         {% endwith %}
 
-        <!-- CREATE: Add Subject Form -->
+        <!-- CREATE: Add Student Form -->
         <div class="form-container">
-            <h2 style="margin-bottom: 20px;">➕ Add New Subject</h2>
-            <form action="/add_subject" method="POST">
+            <h2 style="margin-bottom: 20px;">➕ Add New Student</h2>
+            <form action="/add_student" method="POST">
                 <div class="form-grid">
                     <div class="form-group">
-                        <label>Subject Name *</label>
-                        <input type="text" name="SubjectName" placeholder="e.g., Mathematics" required maxlength="50">
+                        <label>First Name *</label>
+                        <input type="text" name="StudFirstName" placeholder="e.g., John" required maxlength="50">
                     </div>
 
                     <div class="form-group">
-                        <label>Units *</label>
-                        <input type="number" name="Units" placeholder="e.g., 3" required min="1" max="10">
+                        <label>Last Name *</label>
+                        <input type="text" name="StudLastName" placeholder="e.g., Doe" required maxlength="50">
                     </div>
 
                     <div class="form-group">
-                        <label>Assign Teacher</label>
-                        <select name="TeacherID">
-                            <option value="">-- No Teacher (Unassigned) --</option>
-                            {% if teachers %}
-                                {% for teacher in teachers %}
-                                    <option value="{{ teacher.TeacherID }}">{{ teacher.FullName }}</option>
+                        <label>Middle Initial</label>
+                        <input type="text" name="MiddleInitial" placeholder="e.g., A" maxlength="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Birthday *</label>
+                        <input type="date" name="Bday" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" name="Address" placeholder="e.g., 123 Main St" maxlength="255">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Section</label>
+                        <select name="SectionID">
+                            <option value="">-- No Section --</option>
+                            {% if sections %}
+                                {% for section in sections %}
+                                    <option value="{{ section.SectionID }}">{{ section.SectionName }} (Grade {{ section.GradeLevel }})</option>
                                 {% endfor %}
                             {% else %}
-                                <option value="" disabled>No teachers available</option>
+                                <option value="" disabled>No sections available</option>
                             {% endif %}
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">➕ Add Subject</button>
+                <button type="submit" class="btn btn-primary">➕ Add Student</button>
             </form>
         </div>
 
-        <!-- READ: Subjects List -->
-        <h2 style="margin-bottom: 20px;">📋 Subjects List</h2>
+        <!-- READ: Students List -->
+        <h2 style="margin-bottom: 20px;">📋 Students List</h2>
 
-        {% if subjects %}
+        {% if students %}
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Subject Name</th>
-                        <th>Units</th>
-                        <th>Teacher</th>
-                        <th>Teacher ID</th>
+                        <th>Full Name</th>
+                        <th>Birthday</th>
+                        <th>Address</th>
+                        <th>Section</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for subject in subjects %}
+                    {% for student in students %}
                     <tr>
-                        <td><span class="badge">#{{ subject.SubjectID }}</span></td>
-                        <td><strong>{{ subject.SubjectName }}</strong></td>
-                        <td>{{ subject.Units }}</td>
+                        <td><span class="badge">#{{ student.StudentID }}</span></td>
                         <td>
-                            {% if subject.TeacherFullName %}
-                                {{ subject.TeacherFullName }}
+                            <strong>{{ student.StudLastName }}, {{ student.StudFirstName }}</strong>
+                            {% if student.MiddleInitial %} {{ student.MiddleInitial }}.{% endif %}
+                        </td>
+                        <td>{{ student.Bday }}</td>
+                        <td>{{ student.Address or 'No address' }}</td>
+                        <td>
+                            {% if student.SectionName %}
+                                {{ student.SectionName }} (Gr. {{ student.GradeLevel }})
                             {% else %}
                                 <span style="color: #a0aec0;">Not Assigned</span>
                             {% endif %}
                         </td>
                         <td>
-                            {% if subject.TeacherID %}
-                                {{ subject.TeacherID }}
-                            {% else %}
-                                -
-                            {% endif %}
-                        </td>
-                        <td>
                             <div class="action-buttons">
-                                <a href="/edit_subject/{{ subject.SubjectID }}" class="btn btn-edit">✏️ Edit</a>
-                                <a href="/delete_subject/{{ subject.SubjectID }}"
+                                <a href="/edit_student/{{ student.StudentID }}" class="btn btn-edit">✏️ Edit</a>
+                                <a href="/delete_student/{{ student.StudentID }}"
                                    class="btn btn-delete"
-                                   onclick="return confirm('Are you sure you want to delete {{ subject.SubjectName }}?')">🗑️ Delete</a>
+                                   onclick="return confirm('Are you sure you want to delete {{ student.StudFirstName }} {{ student.StudLastName }}?')">🗑️ Delete</a>
                             </div>
                         </td>
                     </tr>
@@ -281,13 +303,13 @@
             </table>
 
             <div style="margin-top: 20px; color: #718096;">
-                Total Subjects: {{ subjects|length }}
+                Total Students: {{ students|length }}
             </div>
         {% else %}
             <div class="no-data">
-                📭 No subjects found in database
+                📭 No students found in database
                 <div style="margin-top: 15px; font-size: 14px;">
-                    Add your first subject using the form above
+                    Add your first student using the form above
                 </div>
             </div>
         {% endif %}

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachers List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #a8df8e 0%, #a8df8e 100%);
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #48bb78;
+            padding-bottom: 15px;
+        }
+
+        /* Navigation */
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .nav-btn {
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+        .nav-btn-subject { background: #667eea; }
+        .nav-btn-student { background: #4299e1; }
+        .nav-btn-teacher { background: #48bb78; font-weight: bold; }
+
+        /* Flash Messages */
+        .flash-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .flash-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* Stats Cards */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Department Filter */
+        .filter-container {
+            margin-bottom: 20px;
+        }
+        .filter-select {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 250px;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tr:hover {
+            background: #f7fafc;
+        }
+
+        .badge {
+            background: #edf2f7;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+
+        .department-badge {
+            background: #48bb78;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 50px;
+            color: #718096;
+            background: #f7fafc;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        /* Search */
+        .search-box {
+            margin-bottom: 20px;
+        }
+        .search-input {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-buttons {
+                flex-direction: column;
+            }
+            .search-input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👨‍🏫 Faculty & Teachers</h1>
+        <div class="subtitle">TEAMBA UNIVERSITY</div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="/" class="nav-btn nav-btn-subject">📚 Subjects</a>
+            <a href="/students" class="nav-btn nav-btn-student">👥 Students</a>
+            <a href="/teachers" class="nav-btn nav-btn-teacher">👨‍🏫 Teachers</a>
+        </div>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Statistics Cards -->
+        {% if teachers %}
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">{{ teachers|length }}</div>
+                <div class="stat-label">Total Teachers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ teachers|map(attribute='Department')|unique|list|length }}</div>
+                <div class="stat-label">Departments</div>
+            </div>
+        </div>
+
+        <!-- Simple Search (JavaScript filter) -->
+        <div class="search-box">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search by name or department..." onkeyup="filterTable()">
+        </div>
+
+        <!-- Teachers Table -->
+        <table id="teachersTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Department</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for teacher in teachers %}
+                <tr>
+                    <td><span class="badge">#{{ teacher.TeacherID }}</span></td>
+                    <td><strong>{{ teacher.TeacherLN }}, {{ teacher.TeacherFN }}</strong></td>
+                    <td><span class="department-badge">{{ teacher.Department }}</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Department Summary -->
+        <div style="margin-top: 30px; padding: 20px; background: #f7fafc; border-radius: 10px;">
+            <h3 style="margin-bottom: 15px;">📊 Teachers by Department</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                {% set departments = {} %}
+                {% for teacher in teachers %}
+                    {% if teacher.Department in departments %}
+                        {% set _ = departments.update({teacher.Department: departments[teacher.Department] + 1}) %}
+                    {% else %}
+                        {% set _ = departments.update({teacher.Department: 1}) %}
+                    {% endif %}
+                {% endfor %}
+
+                {% for dept, count in departments.items() %}
+                <div style="display: flex; justify-content: space-between; padding: 8px; background: white; border-radius: 5px;">
+                    <span>{{ dept }}</span>
+                    <span style="font-weight: bold;">{{ count }} teacher(s)</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        {% else %}
+        <div class="no-data">
+            👨‍🏫 No teachers found in database
+            <div style="margin-top: 15px; font-size: 14px;">
+                Add teachers using SQL INSERT commands
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- JavaScript for filtering -->
+    <script>
+        function filterTable() {
+            let input = document.getElementById('searchInput');
+            let filter = input.value.toUpperCase();
+            let table = document.getElementById('teachersTable');
+            let tr = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < tr.length; i++) {
+                let tdName = tr[i].getElementsByTagName('td')[1];
+                let tdDept = tr[i].getElementsByTagName('td')[2];
+                if (tdName || tdDept) {
+                    let nameValue = tdName.textContent || tdName.innerText;
+                    let deptValue = tdDept.textContent || tdDept.innerText;
+                    if (nameValue.toUpperCase().indexOf(filter) > -1 || deptValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = '';
+                    } else {
+                        tr[i].style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

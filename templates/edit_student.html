@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Subject</title>
+    <title>Edit Student</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #a8df8e 0%, #a8df8e 100%);
             padding: 40px;
             min-height: 100vh;
             display: flex;
@@ -22,7 +22,7 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 700px;
             width: 100%;
             background: white;
             padding: 40px;
@@ -42,7 +42,7 @@
             padding-bottom: 15px;
         }
 
-        .subject-info {
+        .student-info {
             background: #f0fff4;
             border-left: 4px solid #48bb78;
             padding: 20px;
@@ -118,22 +118,25 @@
             margin-bottom: 20px;
         }
 
+        .flash-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
         .required::after {
             content: " *";
             color: #e53e3e;
-        }
-
-        .hint {
-            color: #718096;
-            font-size: 13px;
-            margin-top: 5px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>✏️ Edit Subject</h1>
-        <div class="subtitle">Update subject information</div>
+        <h1>✏️ Edit Student</h1>
+        <div class="subtitle">Update student information</div>
 
         <!-- Flash Messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -144,59 +147,65 @@
             {% endif %}
         {% endwith %}
 
-        {% if subject %}
-            <!-- Subject Info -->
-            <div class="subject-info">
-                <strong>Subject ID:</strong> #{{ subject.SubjectID }}<br>
-                <strong>Current Name:</strong> {{ subject.SubjectName }}<br>
-                {% if subject.TeacherFullName %}
-                    <strong>Current Teacher:</strong> {{ subject.TeacherFullName }}
-                {% endif %}
+        {% if student %}
+            <!-- Student Info -->
+            <div class="student-info">
+                <strong>Student ID:</strong> #{{ student.StudentID }}<br>
+                <strong>Current Name:</strong> {{ student.StudLastName }}, {{ student.StudFirstName }}
+                {% if student.MiddleInitial %} {{ student.MiddleInitial }}.{% endif %}
             </div>
 
             <!-- Edit Form -->
-            <form action="/update_subject/{{ subject.SubjectID }}" method="POST">
+            <form action="/update_student/{{ student.StudentID }}" method="POST">
                 <div class="form-group">
-                    <label class="required">Subject Name</label>
-                    <input type="text" name="SubjectName" value="{{ subject.SubjectName }}"
-                           required maxlength="50">
-                    <div class="hint">Maximum 50 characters</div>
+                    <label class="required">First Name</label>
+                    <input type="text" name="StudFirstName" value="{{ student.StudFirstName }}" required maxlength="50">
                 </div>
 
                 <div class="form-group">
-                    <label class="required">Units</label>
-                    <input type="number" name="Units" value="{{ subject.Units }}"
-                           required min="1" max="10" step="1">
-                    <div class="hint">Between 1 and 10 units</div>
+                    <label class="required">Last Name</label>
+                    <input type="text" name="StudLastName" value="{{ student.StudLastName }}" required maxlength="50">
                 </div>
 
                 <div class="form-group">
-                    <label>Assign Teacher</label>
-                    <select name="TeacherID">
-                        <option value="">-- No Teacher (Unassigned) --</option>
-                        {% if teachers %}
-                            {% for teacher in teachers %}
-                                <option value="{{ teacher.TeacherID }}"
-                                    {% if teacher.TeacherID == subject.TeacherID %}
-                                        selected
-                                    {% endif %}>
-                                    {{ teacher.FullName }}
+                    <label>Middle Initial</label>
+                    <input type="text" name="MiddleInitial" value="{{ student.MiddleInitial or '' }}" maxlength="1">
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Birthday</label>
+                    <input type="date" name="Bday" value="{{ student.Bday }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" name="Address" value="{{ student.Address or '' }}" maxlength="255">
+                </div>
+
+                <div class="form-group">
+                    <label>Section</label>
+                    <select name="SectionID">
+                        <option value="">-- No Section --</option>
+                        {% if sections %}
+                            {% for section in sections %}
+                                <option value="{{ section.SectionID }}"
+                                    {% if section.SectionID == student.SectionID %}selected{% endif %}>
+                                    {{ section.SectionName }} (Grade {{ section.GradeLevel }})
                                 </option>
                             {% endfor %}
                         {% endif %}
                     </select>
-                    <div class="hint">Leave unassigned if no teacher</div>
                 </div>
 
                 <div style="margin-top: 30px;">
-                    <button type="submit" class="btn btn-update">💾 Update Subject</button>
+                    <button type="submit" class="btn btn-update">💾 Update Student</button>
                     <a href="/" class="btn btn-cancel">↩️ Cancel</a>
                 </div>
             </form>
         {% else %}
-            <p style="color: #e53e3e; text-align: center;">Subject not found!</p>
+            <p style="color: #e53e3e; text-align: center;">Student not found!</p>
             <div style="text-align: center; margin-top: 20px;">
-                <a href="/" class="btn btn-update">← Back to Subjects</a>
+                <a href="/" class="btn btn-update">← Back to Students</a>
             </div>
         {% endif %}
     </div>
